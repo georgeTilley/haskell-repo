@@ -29,7 +29,10 @@ getPlayerMove = do
       getPlayerMove
 
 getComputerMove :: IO Move
-getComputerMove = toEnum <$> randomRIO (0, 2)
+getComputerMove = do
+  let moves = [Rock, Paper, Scissors]
+  i <- randomRIO (0, 2)
+  return (moves !! i)
 
 playRound :: Move -> Move -> IO ()
 playRound playerMove computerMove = do

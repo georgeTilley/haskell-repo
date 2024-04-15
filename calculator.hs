@@ -1,15 +1,12 @@
--- Define a data type for arithmetic expressions
 data Expr = Val Int | Add Expr Expr | Sub Expr Expr | Mul Expr Expr | Div Expr Expr
 
--- Evaluate an arithmetic expression
 eval :: Expr -> Int
 eval (Val n) = n
 eval (Add e1 e2) = eval e1 + eval e2
 eval (Sub e1 e2) = eval e1 - eval e2
 eval (Mul e1 e2) = eval e1 * eval e2
-eval (Div e1 e2) = eval e1 `div` eval e2  -- Perform integer division
+eval (Div e1 e2) = eval e1 `div` eval e2
 
--- Parse an arithmetic expression from a string
 parseExpr :: String -> Expr
 parseExpr = go . words
   where
@@ -25,7 +22,7 @@ parseExpr = go . words
 
 main :: IO ()
 main = do
-    putStrLn "Enter an arithmetic expression (e.g., 2 + 3 * 4):"
+    putStrLn "Lets do some math! (e.g., 2 + 3 * 4):"
     input <- getLine
     let expr = parseExpr input
     putStrLn $ "Result: " ++ show (eval expr)
